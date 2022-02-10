@@ -1,0 +1,64 @@
+using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace firstProblemMidleExam
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            List<string> numbers = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
+            string text = Console.ReadLine();
+            List<string> message = new List<string>();
+
+            List<string> text1 = new List<string>();
+
+            foreach (var item in text)
+            {
+                text1.Add(item.ToString());
+            }
+
+            //Console.WriteLine(text1.Count);
+            //Console.WriteLine(String.Join(' ', text1));
+
+
+            // 9992 562 8933
+            // This is some message for you = 27
+
+            //29
+
+            int currentSum = 0;
+            
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                string current = numbers[i];
+                currentSum = 0;
+
+                foreach (var item in current)
+                {
+                    
+                    currentSum += int.Parse(item.ToString());
+                    
+                }
+                while (currentSum >= text.Length)
+                {
+                    currentSum -= text.Length;
+                }
+                message.Add(text1[currentSum].ToString());
+                text1.RemoveAt(currentSum);
+
+            }
+
+            for (int i = 0; i < message.Count; i++)
+            {
+                Console.Write(message[i]);
+            }
+            //Console.WriteLine(String.Join(' ', message));
+        }
+
+    }
+}
